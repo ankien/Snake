@@ -32,6 +32,44 @@ namespace Snake
             StartGame();
         }
 
+        private void StartGame() {
+            // Set settings to default
+            new Settings();
+
+            // Create new player object
+            snake.Clear();
+            Circle head = new Circle();
+            head.X = 10;
+            head.Y = 5;
+            snake.Add(head);
+
+            lblScore.Text = Settings.Score.ToString();
+            GenerateFood();
+        }
+
+        // Place random food on game screen
+        private void GenerateFood() {
+            int maxXPos = pbCanvas.Size.Width / Settings.Width;
+            int maxYPos = pbCanvas.Size.Height / Settings.Height;
+
+            /*  Needs a fix
+             *  Make sure food and badfood aren't spawning on each other or snake!
+             */
+            Random random = new Random();
+            food = new Circle();
+            food.X = random.Next(0, maxXPos);
+            food.Y = random.Next(maxYPos, 0);
+
+            badFood = new Circle();
+            badFood.X = random.Next(0, maxXPos);
+            badFood.Y = random.Next(maxYPos, 0);
+
+        }
+
+        private void UpdateScreen(object sender, EventArgs e) {
+
+        }
+
         // remove?
         private void label1_Click(object sender, EventArgs e)
         {
@@ -40,6 +78,12 @@ namespace Snake
 
         // remove?
         private void lblScore_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // remove?
+        private void PbCanvas_Click(object sender, EventArgs e)
         {
 
         }
