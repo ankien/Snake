@@ -67,24 +67,31 @@ namespace Snake
         }
 
         private void UpdateScreen(object sender, EventArgs e) {
+            // Check for game over
+            if(Settings.GameOver == true) {
+                // Check if enter is pressed
+                if(Inputs.KeyPressed(Keys.Enter)) {
+                    StartGame();
+                }
+            }
+            else {
+                if(Inputs.KeyPressed(Keys.Right) && Settings.PlayerDirection != Direction.Left) {
+                    Settings.PlayerDirection = Direction.Right;
+                }
+                else if (Inputs.KeyPressed(Keys.Left) && Settings.PlayerDirection != Direction.Right) {
+                    Settings.PlayerDirection = Direction.Left;
+                }
+                else if (Inputs.KeyPressed(Keys.Up) && Settings.PlayerDirection != Direction.Down) {
+                    Settings.PlayerDirection = Direction.Up;
+                }
+                else if (Inputs.KeyPressed(Keys.Down) && Settings.PlayerDirection != Direction.Up) {
+                    Settings.PlayerDirection = Direction.Down;
+                }
 
-        }
+                MovePlayer();
+            }
 
-        // remove?
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // remove?
-        private void lblScore_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // remove?
-        private void PbCanvas_Click(object sender, EventArgs e)
-        {
+            pbCanvas.Invalidate();
 
         }
     }

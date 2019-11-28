@@ -45,7 +45,6 @@
             this.pbCanvas.Size = new System.Drawing.Size(1120, 508);
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
-            this.pbCanvas.Click += new System.EventHandler(this.PbCanvas_Click);
             // 
             // label1
             // 
@@ -57,7 +56,6 @@
             this.label1.Size = new System.Drawing.Size(136, 42);
             this.label1.TabIndex = 1;
             this.label1.Text = "Score: ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblScore
             // 
@@ -68,7 +66,6 @@
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(0, 42);
             this.lblScore.TabIndex = 2;
-            this.lblScore.Click += new System.EventHandler(this.lblScore_Click);
             // 
             // Form1
             // 
