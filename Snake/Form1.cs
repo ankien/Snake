@@ -94,5 +94,37 @@ namespace Snake
             pbCanvas.Invalidate();
 
         }
+
+        private void pbCanvas_Paint(object sender, PaintEventArgs e) {
+            Graphics canvas = e.Graphics;
+
+            if(Settings.GameOver != false) {
+                // Set color of Snake
+                Brush snakeColor;
+                
+                // Draw Snake
+                for(int i = 0; i < snake.Count; i++) {
+                    // Draw head
+                    if (i == 0) {
+                        snakeColor = Brushes.Red;
+                    }
+                    // Draw rest of body
+                    else {
+                        snakeColor = Brushes.Green;
+                    }
+
+                    // Draw Snake
+                    canvas.FillEllipse(snakeColor,
+                        new Rectangle(snake[i].X * Settings.Width,
+                                      snake[i].Y * Settings.Height,
+                                      Settings.Width, Settings.Height));
+
+                    // Draw Food
+                }
+            }
+            else {
+
+            }
+        }
     }
 }

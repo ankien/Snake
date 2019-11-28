@@ -40,11 +40,12 @@
             // 
             this.pbCanvas.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pbCanvas.Location = new System.Drawing.Point(16, 15);
-            this.pbCanvas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbCanvas.Margin = new System.Windows.Forms.Padding(4);
             this.pbCanvas.Name = "pbCanvas";
             this.pbCanvas.Size = new System.Drawing.Size(1120, 508);
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
+            this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCanvas_Paint);
             // 
             // label1
             // 
@@ -75,7 +76,7 @@
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pbCanvas);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
