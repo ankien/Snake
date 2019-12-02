@@ -33,6 +33,9 @@ namespace Snake
         }
 
         private void StartGame() {
+
+            lblGameOver.Visible = false;
+
             // Set settings to default
             new Settings();
 
@@ -120,11 +123,27 @@ namespace Snake
                                       Settings.Width, Settings.Height));
 
                     // Draw Food
+                    canvas.FillEllipse(Brushes.Yellow,
+                       new Rectangle(food.X * Settings.Width,
+                                     food.Y * Settings.Height,
+                                     Settings.Width, Settings.Height));
+
+                    // Draw bad food
+                    canvas.FillEllipse(Brushes.Purple,
+                        new Rectangle(badFood.X * Settings.Width,
+                                      badFood.Y * Settings.Height,
+                                      Settings.Width, Settings.Height));
                 }
             }
             else {
-
+                string gameOver = "Game Over!\n Your final score is: " + Settings.Score + "\nPress enter to try again";
+                lblGameOver.Text = gameOver;
+                lblGameOver.Visible = true;
             }
+        }
+
+        private void MovePlayer() {
+            for(int i = ;)
         }
     }
 }
