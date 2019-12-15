@@ -225,12 +225,10 @@ namespace Snake
             Settings.GameOver = true;
         }
 
-        // wtf
         private void Form1_KeyDown(object sender, KeyEventArgs e) {
             Inputs.ChangeState(e.KeyCode, true);
         }
 
-        // wtf does this do
         private void Form1_KeyUp(object sender, KeyEventArgs e) {
             Inputs.ChangeState(e.KeyCode, false);
         }
