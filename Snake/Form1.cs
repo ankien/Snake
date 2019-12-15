@@ -24,8 +24,8 @@ namespace Snake
             new Settings();
 
             // Set game speed and start timer
-            gameTimer.Interval = 1000/Settings.Speed;
-            gameTimer.Tick += UpdateScreen();
+            gameTimer.Interval = 1000 / Settings.Speed;
+            gameTimer.Tick += UpdateScreen;
             gameTimer.Start();
 
             // Start New game
@@ -61,17 +61,17 @@ namespace Snake
             Random random = new Random();
             food = new Circle();
             food.X = random.Next(0, maxXPos);
-            food.Y = random.Next(maxYPos, 0);
+            food.Y = random.Next(0, maxYPos);
 
             badFood = new Circle();
             badFood.X = random.Next(0, maxXPos);
-            badFood.Y = random.Next(maxYPos, 0);
+            badFood.Y = random.Next(0, maxYPos);
 
         }
 
         private void UpdateScreen(object sender, EventArgs e) {
             // Check for game over
-            if(Settings.GameOver == true) {
+            if(Settings.GameOver) {
                 // Check if enter is pressed
                 if(Inputs.KeyPressed(Keys.Enter)) {
                     StartGame();
@@ -90,7 +90,6 @@ namespace Snake
                 else if (Inputs.KeyPressed(Keys.Down) && Settings.PlayerDirection != Direction.Up) {
                     Settings.PlayerDirection = Direction.Down;
                 }
-
                 MovePlayer();
             }
 
@@ -101,7 +100,7 @@ namespace Snake
         private void pbCanvas_Paint(object sender, PaintEventArgs e) {
             Graphics canvas = e.Graphics;
 
-            if(Settings.GameOver != false) {
+            if(!Settings.GameOver) {
                 // Set color of Snake
                 Brush snakeColor;
                 
@@ -143,7 +142,97 @@ namespace Snake
         }
 
         private void MovePlayer() {
-            for(int i = ;)
+            for(int i = snake.Count - 1; i >= 0; i--) {
+                // Move Head
+                if (i == 0) {
+                    switch(Settings.PlayerDirection) {
+                        case Direction.Right:
+                            snake[i].X++;
+                            break;
+                        case Direction.Left:
+                            snake[i].X--;
+                            break;
+                        case Direction.Up:
+                            snake[i].Y--;
+                            break;
+                        case Direction.Down:
+                            snake[i].Y++;
+                            break;
+                    }
+
+                    // Get maximum X and Y position
+                    int maxXPos = pbCanvas.Size.Width / Settings.Width;
+                    int maxYPos = pbCanvas.Size.Height / Settings.Height;
+
+                    // Detect collision with game borders
+                    if(snake[i].X < 0 || snake[i].Y < 0 ||
+                       snake[i].X >= maxXPos || snake[i].Y >= maxYPos) {
+                        Die();
+                    }
+
+                    // Detect collision with body
+                    for (int j = 1; j < snake.Count; j++) {
+                        if(snake[i].X == snake[j].X &&
+                           snake[i].Y == snake[j].Y) {
+                            Die();
+                        }
+                    }
+
+                    // Detect collision with food piece
+                    if(snake[0].X == food.X && snake[0].Y == food.Y) {
+                        Eat();
+                    }
+
+                    /* Detect collision with bad food piece
+                    if(snake[0].X == badFood.X && snake[0].Y == badFood.Y) {
+
+                        // If the body is only a head...
+                        if() {
+                            Die()
+                        }
+
+                        // If there is a body...
+                        else() {
+                            Puke();
+                        }
+                    }
+                    */
+                }
+                else {
+                    // Move Body
+                    snake[i].X = snake[i - 1].X;
+                    snake[i].Y = snake[i - 1].Y;
+                }
+            }
+        }
+
+        private void Eat() {
+            // Add Circle to body
+            Circle food = new Circle();
+            food.X = snake[snake.Count - 1].X;
+            food.Y = snake[snake.Count - 1].Y;
+
+            snake.Add(food);
+
+            // Update Score
+            Settings.Score += Settings.Points;
+            lblScore.Text = Settings.Score.ToString();
+
+            GenerateFood();
+        }
+
+        private void Die() {
+            Settings.GameOver = true;
+        }
+
+        // wtf
+        private void Form1_KeyDown(object sender, KeyEventArgs e) {
+            Inputs.ChangeState(e.KeyCode, true);
+        }
+
+        // wtf does this do
+        private void Form1_KeyUp(object sender, KeyEventArgs e) {
+            Inputs.ChangeState(e.KeyCode, false);
         }
     }
 }

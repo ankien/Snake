@@ -27,7 +27,7 @@ namespace Snake
             Points = 20;
             BadPoints = -15;
             GameOver = false;
-            PlayerDirection = Direction.Up;
+            PlayerDirection = Direction.Down;
         }
     }
 }

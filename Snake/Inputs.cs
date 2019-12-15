@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class Inputs
+    internal class Inputs
     {
         // Load list of available Keyboard buttons
         private static Hashtable keyTable = new Hashtable();
