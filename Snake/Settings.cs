@@ -18,8 +18,8 @@ namespace Snake {
 
         public Settings() {
             Width = 16;
-            Height = 16;
-            Speed = 16;
+            Height = 16; 
+            Speed = 14;
             Score = 0;
             Points = 20;
             BadPoints = -15;

@@ -179,7 +179,7 @@ namespace Snake {
 
                     // Detect collision with game borders
                     if(snake[i].X < 0 || snake[i].Y < 0 ||
-                       snake[i].X >= maxXPos || snake[i].Y >= maxYPos) {
+                       snake[i].X > maxXPos || snake[i].Y > maxYPos) {
                         Die();
                     }
 
