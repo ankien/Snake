@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Snake
-{
-    public partial class Form1 : Form
-    {
+namespace Snake {
+
+    public partial class Form1 : Form {
+
         private List<Circle> snake = new List<Circle>();
         private Circle food = new Circle();
         private Circle badFood = new Circle();
 
-        public Form1()
-        {
+        public Form1() {
+
             InitializeComponent();
 
             // Set settings to default
@@ -52,6 +52,7 @@ namespace Snake
 
         // Place random food on game screen
         private void GenerateFood() {
+
             int maxXPos = pbCanvas.Size.Width / Settings.Width;
             int maxYPos = pbCanvas.Size.Height / Settings.Height;
 
@@ -70,14 +71,18 @@ namespace Snake
         }
 
         private void UpdateScreen(object sender, EventArgs e) {
+
             // Check for game over
             if(Settings.GameOver) {
+
                 // Check if enter is pressed
                 if(Inputs.KeyPressed(Keys.Enter)) {
                     StartGame();
                 }
             }
+
             else {
+
                 if(Inputs.KeyPressed(Keys.Right) && Settings.PlayerDirection != Direction.Left) {
                     Settings.PlayerDirection = Direction.Right;
                 }
@@ -90,6 +95,7 @@ namespace Snake
                 else if (Inputs.KeyPressed(Keys.Down) && Settings.PlayerDirection != Direction.Up) {
                     Settings.PlayerDirection = Direction.Down;
                 }
+
                 MovePlayer();
             }
 
@@ -98,6 +104,7 @@ namespace Snake
         }
 
         private void pbCanvas_Paint(object sender, PaintEventArgs e) {
+
             Graphics canvas = e.Graphics;
 
             if(!Settings.GameOver) {
@@ -106,10 +113,12 @@ namespace Snake
                 
                 // Draw Snake
                 for(int i = 0; i < snake.Count; i++) {
+
                     // Draw head
                     if (i == 0) {
                         snakeColor = Brushes.Red;
                     }
+
                     // Draw rest of body
                     else {
                         snakeColor = Brushes.Green;
@@ -135,6 +144,7 @@ namespace Snake
                 }
             }
             else {
+
                 string gameOver = "Game Over!\n Your final score is: " + Settings.Score + "\nPress enter to try again";
                 lblGameOver.Text = gameOver;
                 lblGameOver.Visible = true;
@@ -142,9 +152,12 @@ namespace Snake
         }
 
         private void MovePlayer() {
+
             for(int i = snake.Count - 1; i >= 0; i--) {
+
                 // Move Head
                 if (i == 0) {
+
                     switch(Settings.PlayerDirection) {
                         case Direction.Right:
                             snake[i].X++;
@@ -172,6 +185,7 @@ namespace Snake
 
                     // Detect collision with body
                     for (int j = 1; j < snake.Count; j++) {
+
                         if(snake[i].X == snake[j].X &&
                            snake[i].Y == snake[j].Y) {
                             Die();
@@ -199,6 +213,7 @@ namespace Snake
                     */
                 }
                 else {
+
                     // Move Body
                     snake[i].X = snake[i - 1].X;
                     snake[i].Y = snake[i - 1].Y;
@@ -207,6 +222,7 @@ namespace Snake
         }
 
         private void Eat() {
+
             // Add Circle to body
             Circle food = new Circle();
             food.X = snake[snake.Count - 1].X;

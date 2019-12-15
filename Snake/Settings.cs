@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snake
-{
+namespace Snake {
     public enum Direction {Up,Down,Left,Right};
-    class Settings
-    {
+    class Settings {
         public static int Width{ get; set; }
         public static int Height{ get; set; }
         public static int Speed{ get; set; }
@@ -18,8 +16,7 @@ namespace Snake
         public static bool GameOver{ get; set; }
         public static Direction PlayerDirection { get; set; }
 
-        public Settings()
-        {
+        public Settings() {
             Width = 16;
             Height = 16;
             Speed = 16;
