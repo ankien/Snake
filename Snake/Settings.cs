@@ -13,7 +13,6 @@ namespace Snake {
         public static int Speed{ get; set; }
         public static int Score{ get; set; }
         public static int Points{ get; set; }
-        public static int BadPoints { get; set; }
         public static bool GameOver{ get; set; }
         public static Direction PlayerDirection { get; set; }
 
@@ -23,7 +22,6 @@ namespace Snake {
             Speed = 14;
             Score = 0;
             Points = 20;
-            BadPoints = 15;
             GameOver = false;
             PlayerDirection = Direction.Down;
         }

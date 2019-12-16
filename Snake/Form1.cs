@@ -13,7 +13,7 @@ namespace Snake {
     public partial class Form1 : Form {
         private List<Circle> snake = new List<Circle>();
         private Circle food = new Circle();
-        private Circle badFood = new Circle();
+        private Circle[] badFood = new Circle[8];
 
         public Form1() {
             InitializeComponent();
@@ -54,17 +54,16 @@ namespace Snake {
             int maxXPos = pbCanvas.Size.Width / Settings.Width;
             int maxYPos = pbCanvas.Size.Height / Settings.Height;
 
-            /*  Needs a fix
-             *  Make sure food and badfood aren't spawning on each other or snake!
-             */
             Random random = new Random();
             food = new Circle();
             food.X = random.Next(0, maxXPos);
             food.Y = random.Next(0, maxYPos);
 
-            badFood = new Circle();
-            badFood.X = random.Next(0, maxXPos);
-            badFood.Y = random.Next(0, maxYPos);
+            for(int i = 0; i < 8; i++) {
+                badFood[i] = new Circle();
+                badFood[i].X = random.Next(0, maxXPos);
+                badFood[i].Y = random.Next(0, maxYPos);
+            }
 
         }
 
@@ -135,10 +134,12 @@ namespace Snake {
                                      Settings.Width, Settings.Height));
 
                     // Draw bad food
-                    canvas.FillEllipse(Brushes.Purple,
-                        new Rectangle(badFood.X * Settings.Width,
-                                      badFood.Y * Settings.Height,
-                                      Settings.Width, Settings.Height));
+                    for(int j = 0; j < 8; j++) {
+                        canvas.FillEllipse(Brushes.Purple,
+                            new Rectangle(badFood[j].X * Settings.Width,
+                                          badFood[j].Y * Settings.Height,
+                                          Settings.Width, Settings.Height));
+                    }
                 }
             }
             else {
@@ -195,16 +196,9 @@ namespace Snake {
                     }
 
                     // Detect collision with bad food piece
-                    if(snake[0].X == badFood.X && snake[0].Y == badFood.Y) {
-
-                        // If the body is only a head...
-                        if(snake.Count == 1) {
+                    for(int j = 0; j < 8; j++) {
+                        if(snake[0].X == badFood[j].X && snake[0].Y == badFood[j].Y) {
                             Die();
-                        }
-
-                        // If there is a body...
-                        else {
-                            Puke();
                         }
                     }
                 }
@@ -236,18 +230,6 @@ namespace Snake {
 
         private void Die() {
             Settings.GameOver = true;
-        }
-
-
-        private void Puke() {
-            // Remove Circle from body
-            snake.Remove(snake[snake.Count - 1]);
-
-            // Decrease Score
-            Settings.Score -= Settings.BadPoints;
-            lblScore.Text = Settings.Score.ToString();
-
-            GenerateFood();
         }
 
 
