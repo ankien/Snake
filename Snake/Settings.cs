@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake {
     public enum Direction {Up,Down,Left,Right};
+
     class Settings {
         public static int Width{ get; set; }
         public static int Height{ get; set; }
@@ -22,7 +23,7 @@ namespace Snake {
             Speed = 14;
             Score = 0;
             Points = 20;
-            BadPoints = -15;
+            BadPoints = 15;
             GameOver = false;
             PlayerDirection = Direction.Down;
         }

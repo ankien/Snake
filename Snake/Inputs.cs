@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Snake {
 
     internal class Inputs {
-
         // Load list of available Keyboard buttons
         private static Hashtable keyTable = new Hashtable();
+
 
         // Perform a check to see if a particular button is pressed.
         public static bool KeyPressed(Keys key) {
@@ -22,6 +22,7 @@ namespace Snake {
 
             return (bool) keyTable[key];
         }
+
 
         // Detect if a keyboard button is pressed
         public static void ChangeState(Keys key, bool state) {

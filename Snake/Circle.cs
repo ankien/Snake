@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Snake {
+
     class Circle {
         public int X { get; set; }
         public int Y { get; set; }
