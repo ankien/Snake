@@ -1,6 +1,7 @@
 # Snake
 Based off of:<br/>
 https://youtu.be/i6W-aGhlq7M
+Simply download the latest release and enjoy
 ## Changes made
 + Bad food that kills you
 + (Todo) Player difficulty select
