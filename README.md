@@ -1,5 +1,5 @@
 # Snake
-<img src="https://doctard.s-ul.eu/F2Y1QVVX">
+<img src="https://doctard.s-ul.eu/F2Y1QVVX" width="600">
 Based off of:<br/>
 https://youtu.be/i6W-aGhlq7M <br/>
 Simply download the latest compiled release and play.<br/>
