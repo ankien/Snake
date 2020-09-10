@@ -1,7 +1,9 @@
 # Snake
+<img src="https://doctard.s-ul.eu/F2Y1QVVX">
 Based off of:<br/>
 https://youtu.be/i6W-aGhlq7M <br/>
-Simply download the latest release and enjoy
+Simply download the latest compiled release and play.<br/>
+Control the snake with arrow keys.
 ## Changes made
 + Bad food that kills you
 + (Todo) Player difficulty select
